@@ -98,7 +98,15 @@ abstract class Repository implements RepositoryInterface, CriteriaInterface {
      * @return mixed
      */
     public function delete($id) {
-        return $this->model->destroy($id);
+        return $this->model->destory($id);
+    }
+
+    public function softDelete($id,$attribute="id"){
+        return $this->model->where($attribute, '=', $id)->delete();
+    }
+
+    public function restore($id,$attribute="id") {
+        return $this->model->where($attribute, '=', $id)->restore();
     }
 
     /**
